@@ -11,7 +11,7 @@ export const buscarPokemons = async (pokemonName: string): Promise<Pokemon[]> =>
     return data.filter(pokemon => pokemon.name.toLowerCase().startsWith(pokemonName.toLowerCase()));
 };
 
-export const getPokemon = async (pokemonName: string): Promise<PokemonWithProps[]> => {
+export const getPokemon = async (pokemonName: string): Promise<PokemonWithProps> => {
     const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonName}/`);
     const data = await response.json();
     return data;

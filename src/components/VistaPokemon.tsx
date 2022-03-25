@@ -1,31 +1,18 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {PokemonWithProps} from "../types/pokemon.types";
-import {Sprite} from "../types/sprite.types";
-
-const charmander: PokemonWithProps = {
-    id: 4,
-    name: 'Charmander',
-    url: 'https://pokeapi.co/api/v2/pokemon/4/',
-    sprites: [
-        {
-            "default": 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png',
-            other: {home: {front_default: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/4.png'}}
-        } as Sprite
-    ]
-}
+import {useQuery} from "react-query";
+import {getPokemon} from "../queries/pokemon.queries";
 
 const VistaPokemon = () => {
+    // Utilizamos useQuery para obtener el pokemon que viene de redux
+    const {data: pokemon, isLoading} = useQuery("obtenerPokemon", () => getPokemon("charmander"));
+    if (isLoading) return <div>Cargando pokemon...</div>
 
-    // Obtener el pokemon seleccionado de redux utililando el hook selector y luego utilizar
-    // la api que retorna la informacion de este pokemon. Para ello podemos utilizar un useEffect
-    // Ah no olvides aprovechar una herramienta como React Query para facilitar el acceso!
-
-    return charmander ? (
+    return pokemon ? (
         <div className="vistaPokemon">
-            <h4>Pokemon: {charmander.name}</h4>
-            <h5>#{charmander.id}</h5>
-            <img src={charmander.sprites[0].other.home.front_default} />
+            <h4>Pokemon: {pokemon.name}</h4>
+            <h5>#{pokemon.id}</h5>
+            <img src={pokemon.sprites.other.home.front_default} />
         </div>
     ): null;
 }

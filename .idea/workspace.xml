@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ff8132ae-002f-454b-8406-b80ac8633fe5" name="Changes" comment="Base inicial para clase 16 (faltan comments)">
+    <list default="true" id="ff8132ae-002f-454b-8406-b80ac8633fe5" name="Changes" comment="Base inicial para clase 16 + comments">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/BuscarPokemon.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/BuscarPokemon.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/VistaPokemon.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/VistaPokemon.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/queries/pokemon.queries.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/queries/pokemon.queries.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/types/pokemon.types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/types/pokemon.types.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -83,7 +85,7 @@
       <updated>1647097922655</updated>
       <workItem from="1647097923907" duration="1454000" />
       <workItem from="1648209462782" duration="17000" />
-      <workItem from="1648209481439" duration="5166000" />
+      <workItem from="1648209481439" duration="5391000" />
     </task>
     <task id="LOCAL-00001" summary="Base inicial para clase 16 (faltan comments)">
       <created>1648229003912</created>
@@ -92,7 +94,14 @@
       <option name="project" value="LOCAL" />
       <updated>1648229003912</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Base inicial para clase 16 + comments">
+      <created>1648229357623</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1648229357623</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -112,6 +121,7 @@
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Base inicial para clase 16 (faltan comments)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Base inicial para clase 16 (faltan comments)" />
+    <MESSAGE value="Base inicial para clase 16 + comments" />
+    <option name="LAST_COMMIT_MESSAGE" value="Base inicial para clase 16 + comments" />
   </component>
 </project>
