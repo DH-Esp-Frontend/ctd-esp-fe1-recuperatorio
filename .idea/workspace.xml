@@ -2,13 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ff8132ae-002f-454b-8406-b80ac8633fe5" name="Changes" comment="Base inicial para clase 16 + comments">
+      <change afterPath="$PROJECT_DIR$/src/actions/pokemonActions.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/reducers/pokemonReducer.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/store/store.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/BuscarPokemon.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/BuscarPokemon.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ListadoPokemons.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ListadoPokemons.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/VistaPokemon.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/VistaPokemon.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/queries/pokemon.queries.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/queries/pokemon.queries.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/types/pokemon.types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/types/pokemon.types.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,6 +59,7 @@
       <recent name="$PROJECT_DIR$" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/hooks" />
       <recent name="$PROJECT_DIR$/src" />
     </key>
   </component>

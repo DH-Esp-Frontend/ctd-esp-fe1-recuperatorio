@@ -8,7 +8,7 @@ export const getPokemons = async (): Promise<Pokemon[]> => {
 
 export const buscarPokemons = async (pokemonName: string): Promise<Pokemon[]> => {
     const data = await getPokemons();
-    return data.filter(pokemon => pokemon.name.toLowerCase().startsWith(pokemonName.toLowerCase()));
+    return data.filter(pokemon => !pokemonName || pokemon.name?.toLowerCase().startsWith(pokemonName?.toLowerCase()))
 };
 
 export const getPokemon = async (pokemonName: string): Promise<PokemonWithProps> => {

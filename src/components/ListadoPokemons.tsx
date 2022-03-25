@@ -1,8 +1,12 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect} from "react";
 import ListadoPokemonsItem from "../components/ListadoPokemonsItem";
 import {buscarPokemons} from "../queries/pokemon.queries";
 import {Pokemon} from "../types/pokemon.types";
 import {extractPokemonId} from "../services/pokemon.services";
+import {useQuery} from "react-query";
+import {useDispatch, useSelector} from "react-redux";
+import {seleccionarPokemon, SeleccionarPokemonType} from "../actions/pokemonActions";
+import {IRootState} from "../store/store";
 
 /**
  * Visualiza una lista de pokemons
@@ -16,23 +20,27 @@ import {extractPokemonId} from "../services/pokemon.services";
  * @author Digital House
  */
 const ListadoPokemons = () => {
-    const [isLoading, setLoading] = useState(true);
-    const [pokemons, setPokemons] = useState<Pokemon[] | null>(null);
+    const busqueda = useSelector<IRootState, string>(state => state.pokemon.busqueda)
+    const dispatch = useDispatch();
 
+    // // Utilizamos useQuery para buscar los pokemons con el input que viene de redux
+    const {data: pokemons, isLoading, refetch} = useQuery("obtenerPokemons", () => buscarPokemons(busqueda));
     useEffect(() => {
-        buscarPokemons("p").then(data => {
-            setLoading(false);
-            setPokemons(data);
-        });
-    },[])
+        if (busqueda) {
+            refetch();
+        }
+    },[busqueda])
+
+    const onSeleccionarPokemon = (pokemon: Pokemon) => {
+        dispatch(seleccionarPokemon(pokemon));
+    }
 
     if (isLoading) return <div>Cargando pokemons...</div>
-
     return (
         <div id="listadoCategorias">
             {pokemons && pokemons.map((pokemon: Pokemon) => (
                 <ListadoPokemonsItem pokemon={pokemon}
-                                     seleccionarPokemon={() => {}}
+                                     seleccionarPokemon={onSeleccionarPokemon}
                                      key={extractPokemonId(pokemon.url)}/>
             ))}
         </div>

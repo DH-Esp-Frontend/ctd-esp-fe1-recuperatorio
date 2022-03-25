@@ -1,11 +1,25 @@
-import React from "react";
+import React, {FC, useEffect} from "react";
 import PropTypes from "prop-types";
 import {useQuery} from "react-query";
 import {getPokemon} from "../queries/pokemon.queries";
+import {useSelector} from "react-redux";
+import {IRootState} from "../store/store";
+import {Pokemon} from "../types/pokemon.types";
 
-const VistaPokemon = () => {
-    // Utilizamos useQuery para obtener el pokemon que viene de redux
-    const {data: pokemon, isLoading} = useQuery("obtenerPokemon", () => getPokemon("charmander"));
+type VistaPokemonDetalleProps = {
+    pokemonSeleccionado: Pokemon;
+}
+
+const VistaPokemonDetalle:FC<VistaPokemonDetalleProps> = ({pokemonSeleccionado}: VistaPokemonDetalleProps) => {
+    const {data: pokemon, isLoading, refetch} = useQuery("obtenerPokemon",
+        () => getPokemon(pokemonSeleccionado.name),
+        );
+
+    useEffect(() => {
+        if (pokemonSeleccionado) {
+            refetch();
+        }
+    }, [pokemonSeleccionado?.name])
     if (isLoading) return <div>Cargando pokemon...</div>
 
     return pokemon ? (
@@ -15,6 +29,15 @@ const VistaPokemon = () => {
             <img src={pokemon.sprites.other.home.front_default} />
         </div>
     ): null;
+}
+
+const VistaPokemon = () => {
+    // Utilizamos useQuery para obtener el pokemon que viene de redux
+    const pokemonSeleccionado = useSelector<IRootState, Pokemon | null>(state => state.pokemon.pokemonSeleccionado)
+    if (!pokemonSeleccionado) return <></>;
+    //
+    return <VistaPokemonDetalle pokemonSeleccionado={pokemonSeleccionado} />
+
 }
 
 VistaPokemon.propTypes = {
