@@ -1,17 +1,14 @@
-import React, {useEffect, useState} from "react";
-import {Pokemon, PokemonWithProps} from "../types/pokemon.types";
+import React from "react";
+import {PokemonWithProps} from "../types/pokemon.types";
+import {useDispatch, useSelector} from "react-redux";
+import {IRootState} from "../store/store";
+import {seleccionarPokemon} from "../actions/pokemonActions";
 
 const HistorialPokemon = () => {
-    const [pokemons, setPokemons] = useState<PokemonWithProps[]>([
-        {
-            id: 4,
-            name: 'Charmander',
-            url: '',
-            sprites: { front_default: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png', other: {home: {front_default: ''}}}
-        }
-    ]);
+    const pokemons = useSelector<IRootState, PokemonWithProps[]>(state => state.pokemon.historial)
+    const dispatch = useDispatch();
     const onSelectPokemon = (pokemon: PokemonWithProps) =>{
-        // TODO seleccionar pokemon
+        dispatch(seleccionarPokemon(pokemon));
     }
 
     return (

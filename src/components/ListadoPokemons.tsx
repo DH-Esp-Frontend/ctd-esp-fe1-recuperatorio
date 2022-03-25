@@ -5,7 +5,7 @@ import {Pokemon} from "../types/pokemon.types";
 import {extractPokemonId} from "../services/pokemon.services";
 import {useQuery} from "react-query";
 import {useDispatch, useSelector} from "react-redux";
-import {seleccionarPokemon} from "../actions/pokemonActions";
+import {agregarHistorialPokemon, seleccionarPokemon} from "../actions/pokemonActions";
 import {IRootState} from "../store/store";
 
 /**
