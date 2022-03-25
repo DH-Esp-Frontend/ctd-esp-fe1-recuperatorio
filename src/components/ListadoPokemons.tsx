@@ -5,7 +5,7 @@ import {Pokemon} from "../types/pokemon.types";
 import {extractPokemonId} from "../services/pokemon.services";
 import {useQuery} from "react-query";
 import {useDispatch, useSelector} from "react-redux";
-import {seleccionarPokemon, SeleccionarPokemonType} from "../actions/pokemonActions";
+import {seleccionarPokemon} from "../actions/pokemonActions";
 import {IRootState} from "../store/store";
 
 /**
@@ -29,7 +29,7 @@ const ListadoPokemons = () => {
         if (busqueda) {
             refetch();
         }
-    },[busqueda])
+    },[busqueda, refetch])
 
     const onSeleccionarPokemon = (pokemon: Pokemon) => {
         dispatch(seleccionarPokemon(pokemon));

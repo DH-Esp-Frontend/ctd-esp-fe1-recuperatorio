@@ -19,14 +19,14 @@ const VistaPokemonDetalle:FC<VistaPokemonDetalleProps> = ({pokemonSeleccionado}:
         if (pokemonSeleccionado) {
             refetch();
         }
-    }, [pokemonSeleccionado?.name])
+    }, [refetch, pokemonSeleccionado, pokemonSeleccionado?.name])
     if (isLoading) return <div>Cargando pokemon...</div>
 
     return pokemon ? (
         <div className="vistaPokemon">
             <h4>Pokemon: {pokemon.name}</h4>
             <h5>#{pokemon.id}</h5>
-            <img src={pokemon.sprites.other.home.front_default} />
+            <img src={pokemon.sprites.other.home.front_default} alt={pokemon.name}/>
         </div>
     ): null;
 }
