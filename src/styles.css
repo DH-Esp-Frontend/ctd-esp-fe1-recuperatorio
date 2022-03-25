@@ -12,7 +12,7 @@ body {
     border: 2px solid black;
     border-radius: 12px;
     background-color: #ff827a;
-    max-width: 680px;
+    max-width: 950px;
     margin-left: auto;
     margin-right: auto;
 }
@@ -39,30 +39,34 @@ body {
     padding: 4px 8px;
 }
 
-#listadoCategorias {
-    width: 35%;
+.listado {
+    min-width: 300px;
     flex-direction: column;
-    overflow-y: scroll;
+    overflow-y: auto;
     border-right: 2px solid lightgrey;
     align-items: flex-start;
     text-align: left;
     max-height: 700px;
 }
 
-#listadoCategorias div {
+.listado div {
     cursor: pointer;
     padding: 0.5rem 1rem;
-    border-bottom: 1px solid lightgrey;
 }
 
-#listadoCategorias div:hover {
+.listado div:hover {
     cursor: pointer;
     background-color: lightpink;
     border-radius: 12px;
 }
 
-#vistaCategoria {
-    width: 65%;
-    text-align: left;
+.vistaPokemon {
+    width: 300px;
+    max-width: 300px;
     padding: 1rem;
+}
+
+.vistaPokemon img{
+    max-width: 300px;
+    max-height: 300px;
 }

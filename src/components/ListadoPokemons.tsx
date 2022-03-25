@@ -37,7 +37,7 @@ const ListadoPokemons = () => {
 
     if (isLoading) return <div>Cargando pokemons...</div>
     return (
-        <div id="listadoCategorias">
+        <div className="listado">
             {pokemons && pokemons.map((pokemon: Pokemon) => (
                 <ListadoPokemonsItem pokemon={pokemon}
                                      seleccionarPokemon={onSeleccionarPokemon}

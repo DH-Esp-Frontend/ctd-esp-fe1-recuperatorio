@@ -34,7 +34,7 @@ const VistaPokemonDetalle:FC<VistaPokemonDetalleProps> = ({pokemonSeleccionado}:
 const VistaPokemon = () => {
     // Utilizamos useQuery para obtener el pokemon que viene de redux
     const pokemonSeleccionado = useSelector<IRootState, Pokemon | null>(state => state.pokemon.pokemonSeleccionado)
-    if (!pokemonSeleccionado) return <></>;
+    if (!pokemonSeleccionado) return <div className="vistaPokemon"/>;
     //
     return <VistaPokemonDetalle pokemonSeleccionado={pokemonSeleccionado} />
 

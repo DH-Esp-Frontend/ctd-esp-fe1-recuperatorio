@@ -7,6 +7,7 @@ import {QueryClient, QueryClientProvider} from "react-query";
 
 import {Provider} from "react-redux";
 import {store} from "./store/store";
+import HistorialPokemon from "./components/HistorialPokemon";
 
 export default function App() {
 
@@ -25,6 +26,7 @@ export default function App() {
                             <div style={{display: 'flex', flexDirection:'row'}}>
                                 <ListadoPokemons/>
                                 <VistaPokemon />
+                                <HistorialPokemon />
                             </div>
                         </div>
                     </div>
