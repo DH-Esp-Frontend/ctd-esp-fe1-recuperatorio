@@ -1,11 +1,11 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import ListadoPokemonsItem from "../components/ListadoPokemonsItem";
 import {buscarPokemons} from "../queries/pokemon.queries";
 import {Pokemon} from "../types/pokemon.types";
 import {extractPokemonId} from "../services/pokemon.services";
 import {useQuery} from "react-query";
 import {useDispatch, useSelector} from "react-redux";
-import {agregarHistorialPokemon, seleccionarPokemon} from "../actions/pokemonActions";
+import {seleccionarPokemon} from "../actions/pokemonActions";
 import {IRootState} from "../store/store";
 
 /**
@@ -22,14 +22,18 @@ import {IRootState} from "../store/store";
 const ListadoPokemons = () => {
     const busqueda = useSelector<IRootState, string>(state => state.pokemon.busqueda)
     const dispatch = useDispatch();
+    const [isLoading, setLoading] = useState<boolean>(false);
+    const [pokemons, setPokemons] = useState<Pokemon[]>([]);
 
-    // // Utilizamos useQuery para buscar los pokemons con el input que viene de redux
-    const {data: pokemons, isLoading, refetch} = useQuery("obtenerPokemons", () => buscarPokemons(busqueda));
     useEffect(() => {
         if (busqueda) {
-            refetch();
+            setLoading(true);
+            buscarPokemons(busqueda).then((data) => {
+                setPokemons(data);
+                setLoading(false);
+            })
         }
-    },[busqueda, refetch])
+    }, [busqueda])
 
     const onSeleccionarPokemon = (pokemon: Pokemon) => {
         dispatch(seleccionarPokemon(pokemon));

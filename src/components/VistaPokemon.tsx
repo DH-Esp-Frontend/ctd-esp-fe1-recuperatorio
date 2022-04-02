@@ -1,6 +1,5 @@
-import React, {FC, useEffect} from "react";
+import React, {FC, useEffect, useState} from "react";
 import PropTypes from "prop-types";
-import {useQuery} from "react-query";
 import {getPokemon} from "../queries/pokemon.queries";
 import {useDispatch, useSelector} from "react-redux";
 import {IRootState} from "../store/store";
@@ -13,18 +12,20 @@ type VistaPokemonDetalleProps = {
 
 const VistaPokemonDetalle:FC<VistaPokemonDetalleProps> = ({pokemonSeleccionado}: VistaPokemonDetalleProps) => {
     const dispatch = useDispatch();
-    const {data: pokemon, isLoading, refetch} = useQuery<PokemonWithProps>("obtenerPokemon",
-        () => getPokemon(pokemonSeleccionado.name),
-        {onSuccess: (data) => {
-                dispatch(agregarHistorialPokemon(data));
-            }}
-        );
+    const [isLoading, setLoading] = useState<boolean>(false);
+    const [pokemon, setPokemon] = useState<PokemonWithProps | null>(null);
 
     useEffect(() => {
         if (pokemonSeleccionado) {
-            refetch();
+            setLoading(true);
+            getPokemon(pokemonSeleccionado.name).then((data) => {
+                setPokemon(data);
+                setLoading(false);
+                dispatch(agregarHistorialPokemon(data));
+            })
         }
-    }, [refetch, pokemonSeleccionado, pokemonSeleccionado?.name])
+    }, [pokemonSeleccionado, pokemonSeleccionado?.name])
+
     if (isLoading) return <div>Cargando pokemon...</div>
 
     return pokemon ? (
