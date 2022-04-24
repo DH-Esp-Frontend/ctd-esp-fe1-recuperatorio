@@ -1,15 +1,16 @@
 import React, {FC, useEffect, useState} from "react";
 import {getPokemon} from "../queries/pokemon.queries";
+import {useDispatch, useSelector} from "react-redux";
+import {IRootState} from "../store/store";
 import {Pokemon, PokemonWithProps} from "../types/pokemon.types";
-import {useAppDispatch, useAppSelector} from "../store/store";
-import {agregarPokemonAlHistorial, selectPokemonSeleccionado} from "../reducers/pokemonReducer";
+import {agregarHistorialPokemon} from "../actions/pokemonActions";
 
 type VistaPokemonDetalleProps = {
     pokemonSeleccionado: Pokemon;
 }
 
 const VistaPokemonDetalle:FC<VistaPokemonDetalleProps> = ({pokemonSeleccionado}: VistaPokemonDetalleProps) => {
-    const dispatch = useAppDispatch();
+    const dispatch = useDispatch();
     const [isLoading, setLoading] = useState<boolean>(false);
     const [pokemon, setPokemon] = useState<PokemonWithProps | null>(null);
 
@@ -19,7 +20,7 @@ const VistaPokemonDetalle:FC<VistaPokemonDetalleProps> = ({pokemonSeleccionado}:
             getPokemon(pokemonSeleccionado.name).then((data) => {
                 setPokemon(data);
                 setLoading(false);
-                dispatch(agregarPokemonAlHistorial(data));
+                dispatch(agregarHistorialPokemon(data));
             })
         }
     }, [pokemonSeleccionado, pokemonSeleccionado?.name])
@@ -38,7 +39,7 @@ const VistaPokemonDetalle:FC<VistaPokemonDetalleProps> = ({pokemonSeleccionado}:
 const VistaPokemon = () => {
     // Utilizamos useQuery para obtener el pokemon que viene de redux
     // @ts-ignore
-    const pokemonSeleccionado = useAppSelector(selectPokemonSeleccionado)
+    const pokemonSeleccionado = useSelector<IRootState, Pokemon | null>(state => state.pokemon.pokemonSeleccionado)
     if (!pokemonSeleccionado) return <div className="vistaPokemon"/>;
     //
     return <VistaPokemonDetalle pokemonSeleccionado={pokemonSeleccionado} />

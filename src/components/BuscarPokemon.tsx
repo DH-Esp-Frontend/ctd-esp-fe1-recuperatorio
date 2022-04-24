@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import {useDispatch} from "react-redux";
-import {buscarPokemon} from "../reducers/pokemonReducer";
+import {buscarPokemon} from "../actions/pokemonActions";
 
 const BuscarPokemon = () => {
     const [text, setText] = useState<string>("");

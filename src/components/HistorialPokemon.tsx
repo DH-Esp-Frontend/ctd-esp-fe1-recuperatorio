@@ -1,11 +1,11 @@
 import React from "react";
 import {PokemonWithProps} from "../types/pokemon.types";
 import {useDispatch, useSelector} from "react-redux";
-import {useAppSelector} from "../store/store";
-import {seleccionarPokemon, selectHistorial} from "../reducers/pokemonReducer";
+import {IRootState} from "../store/store";
+import {seleccionarPokemon} from "../actions/pokemonActions";
 
 const HistorialPokemon = () => {
-    const pokemons = useAppSelector(selectHistorial)
+    const pokemons = useSelector<IRootState, PokemonWithProps[]>(state => state.pokemon.historial)
     const dispatch = useDispatch();
     const onSelectPokemon = (pokemon: PokemonWithProps) =>{
         dispatch(seleccionarPokemon(pokemon));
