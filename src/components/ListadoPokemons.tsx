@@ -3,9 +3,8 @@ import ListadoPokemonsItem from "../components/ListadoPokemonsItem";
 import {buscarPokemons} from "../queries/pokemon.queries";
 import {Pokemon} from "../types/pokemon.types";
 import {extractPokemonId} from "../services/pokemon.services";
-import {useDispatch, useSelector} from "react-redux";
-import {seleccionarPokemon} from "../actions/pokemonActions";
-import {IRootState} from "../store/store";
+import {useAppDispatch, useAppSelector} from "../store/store";
+import {seleccionarPokemon, selectBusqueda} from "../reducers/pokemonReducer";
 
 /**
  * Visualiza una lista de pokemons
@@ -19,8 +18,8 @@ import {IRootState} from "../store/store";
  * @author Digital House
  */
 const ListadoPokemons = () => {
-    const busqueda = useSelector<IRootState, string>(state => state.pokemon.busqueda)
-    const dispatch = useDispatch();
+    const busqueda = useAppSelector(selectBusqueda)
+    const dispatch = useAppDispatch();
     const [isLoading, setLoading] = useState<boolean>(false);
     const [pokemons, setPokemons] = useState<Pokemon[]>([]);
 

@@ -1,22 +1,17 @@
-import {combineReducers} from "@reduxjs/toolkit";
+import {configureStore} from "@reduxjs/toolkit";
 import pokemonReducer from "../reducers/pokemonReducer";
-import { createStore, compose } from 'redux';
+import {TypedUseSelectorHook, useDispatch, useSelector} from "react-redux";
 
-const rootReducer = combineReducers({
-    pokemon: pokemonReducer,
-});
+export const store = configureStore({
+    reducer: {
+        pokemon: pokemonReducer,
+    },
+})
+// Infiere los tipos del `RootState` y `AppDispatch` de la store
+export type RootState = ReturnType<typeof store.getState>
+// Tipo inferido: {pokemon: PokemonState}
+export type AppDispatch = typeof store.dispatch
 
-export type IRootState = ReturnType<typeof rootReducer>;
-
-
-declare global {
-    interface Window {
-        __REDUX_DEVTOOLS_EXTENSION_COMPOSE__?: typeof compose;
-    }
-}
-
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-
-export const store = createStore(
-    rootReducer, composeEnhancers()
-)
+// Usa los siguientes hooks en la app en vez de los `useDispatch` y `useSelector` planos de Redux
+export const useAppDispatch = () => useDispatch<AppDispatch>()
+export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector
