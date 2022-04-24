@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import {Pokemon} from "../types/pokemon.types";
 import {extractPokemonId} from "../services/pokemon.services";
 
@@ -29,14 +28,5 @@ const ListadoPokemonsItem = ({ pokemon, seleccionarPokemon }: ListadoPokemonsIte
         <strong>{pokemon.name}</strong>
         <small> #{extractPokemonId(pokemon.url)}</small>
     </div>
-
-
-ListadoPokemonsItem.propTypes = {
-    pokemon:
-        PropTypes.shape({
-            name: PropTypes.string.isRequired,
-            url: PropTypes.string.isRequired,
-        })
-};
 
 export default ListadoPokemonsItem;

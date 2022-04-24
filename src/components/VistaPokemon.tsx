@@ -1,5 +1,4 @@
 import React, {FC, useEffect, useState} from "react";
-import PropTypes from "prop-types";
 import {getPokemon} from "../queries/pokemon.queries";
 import {useDispatch, useSelector} from "react-redux";
 import {IRootState} from "../store/store";
@@ -46,13 +45,5 @@ const VistaPokemon = () => {
     return <VistaPokemonDetalle pokemonSeleccionado={pokemonSeleccionado} />
 
 }
-
-VistaPokemon.propTypes = {
-    item:
-        PropTypes.shape({
-            name: PropTypes.string.isRequired,
-            url: PropTypes.string.isRequired,
-        })
-};
 
 export default VistaPokemon;

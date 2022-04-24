@@ -3,21 +3,14 @@ import VistaPokemon from "./components/VistaPokemon";
 
 import "./styles.css";
 import BuscarPokemon from "./components/BuscarPokemon";
-import {QueryClient, QueryClientProvider} from "react-query";
 
 import {Provider} from "react-redux";
 import {store} from "./store/store";
 import HistorialPokemon from "./components/HistorialPokemon";
 
 export default function App() {
-
-    // Vamos a necesitar crear la store, con el estado inicial y configurar el provider para que toda
-    // nuestra aplicacion tenga acceso al estado de Redux
-    const client = new QueryClient();
-
     return (
         <Provider store={store}>
-            <QueryClientProvider client={client}>
                 <div className="App">
                     <h1>Pokédex</h1>
                     <div id="bandejaDeEntrada">
@@ -31,7 +24,6 @@ export default function App() {
                         </div>
                     </div>
                 </div>
-            </QueryClientProvider>
         </Provider>
     );
 }
