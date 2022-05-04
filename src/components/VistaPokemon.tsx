@@ -1,5 +1,6 @@
 import React, {FC, useEffect, useState} from "react";
-import {getPokemon} from "../queries/pokemon.queries";
+import PropTypes from "prop-types";
+import {addToHistory, getPokemon} from "../queries/pokemon.queries";
 import {useDispatch, useSelector} from "react-redux";
 import {IRootState} from "../store/store";
 import {Pokemon, PokemonWithProps} from "../types/pokemon.types";
@@ -14,13 +15,16 @@ const VistaPokemonDetalle:FC<VistaPokemonDetalleProps> = ({pokemonSeleccionado}:
     const [isLoading, setLoading] = useState<boolean>(false);
     const [pokemon, setPokemon] = useState<PokemonWithProps | null>(null);
 
+    // CASO 2
+    // Reemplazar este useEffect por un Thunk (en TS) y los correspondientes valores en Redux
+    // Documentar tanto el thunk como el reducer
     useEffect(() => {
         if (pokemonSeleccionado) {
             setLoading(true);
             getPokemon(pokemonSeleccionado.name).then((data) => {
                 setPokemon(data);
                 setLoading(false);
-                dispatch(agregarHistorialPokemon(data));
+                addToHistory(data);
             })
         }
     }, [pokemonSeleccionado, pokemonSeleccionado?.name])
@@ -45,5 +49,13 @@ const VistaPokemon = () => {
     return <VistaPokemonDetalle pokemonSeleccionado={pokemonSeleccionado} />
 
 }
+
+VistaPokemon.propTypes = {
+    item:
+        PropTypes.shape({
+            name: PropTypes.string.isRequired,
+            url: PropTypes.string.isRequired,
+        })
+};
 
 export default VistaPokemon;

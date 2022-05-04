@@ -16,3 +16,32 @@ export const getPokemon = async (pokemonName: string): Promise<PokemonWithProps>
     const data = await response.json();
     return data;
 };
+
+
+let history:PokemonWithProps[] = [];
+export const fetchHistory = async (): Promise<PokemonWithProps[]> => {
+    return new Promise((resolve) => {
+        resolve(history);
+    });
+};
+
+export const addToHistory = async (pokemon: PokemonWithProps): Promise<PokemonWithProps> => {
+    return new Promise((resolve) => {
+        history = [pokemon, ...history.filter(p => p.name !== pokemon.name)]
+        resolve(pokemon);
+    });
+};
+
+export const removeFromHistory = async (pokemon: PokemonWithProps): Promise<PokemonWithProps> => {
+    return new Promise((resolve) => {
+        history = [...history.filter(p => p.name !== pokemon.name)]
+        resolve(pokemon);
+    });
+};
+
+export const clearFromHistory = async (): Promise<PokemonWithProps[]> => {
+    return new Promise((resolve) => {
+        history = []
+        resolve([]);
+    });
+};
